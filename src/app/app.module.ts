@@ -21,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PromotionService } from './services/promotion.service';
+import { LeaderService } from './services/leader.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PromotionService } from './services/promotion.service';
   ],
   providers: [
     DishService,
-    PromotionService
+    PromotionService,
+    LeaderService
   ],
   bootstrap: [AppComponent]
 })
