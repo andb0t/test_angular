@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
+import { PromotionService } from './services/promotion.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import { MenuComponent } from './menu/menu.component';
     MatButtonModule,
     FlexLayoutModule
   ],
-  providers: [DishService],
+  providers: [
+    DishService,
+    PromotionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
