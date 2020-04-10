@@ -3,15 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 
+import { AppComponent } from './app.component';
 import 'hammerjs';
 
 import { AboutComponent } from './about/about.component';
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
@@ -22,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LeaderService } from './services/leader.service';
     FooterComponent,
     AboutComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -43,12 +46,16 @@ import { LeaderService } from './services/leader.service';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
+    MatDialogModule,
     FlexLayoutModule
   ],
   providers: [
     DishService,
     PromotionService,
     LeaderService
+  ],
+  entryComponents: [
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })
