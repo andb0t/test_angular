@@ -43,10 +43,10 @@
     <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
       <p>
         <mat-form-field class="half-width">
-          <input matInput formControlName="firstname" placeholder="First Name" type="text">
+          <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
         </mat-form-field>
         <mat-form-field class="half-width">
-          <input matInput formControlName="lastname" placeholder="Last Name" type="text">
+          <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
         </mat-form-field>
       </p>
       <p>
@@ -71,7 +71,7 @@
         </table>
       <p>
         <mat-form-field class="full-width">
-          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=12></textarea>
+          <textarea matInput formControlName="message" placeholder="Your Feedback" rows=1></textarea>
         </mat-form-field>
       </p>
       <button type="submit" mat-button class="background-primary text-floral-white">Submit</button>
