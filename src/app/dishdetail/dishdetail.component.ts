@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
-import { Rating } from '../shared/rating';
 import { Comment } from '../shared/comment';
 
 
@@ -17,8 +16,8 @@ import { Comment } from '../shared/comment';
 })
 export class DishdetailComponent implements OnInit {
 
-  ratingForm: FormGroup;
-  rating: Rating;
+  comment: Comment;
+  commentForm: FormGroup;
   dish: Dish;
   dishIds: string[];
   prev: string;
@@ -26,15 +25,15 @@ export class DishdetailComponent implements OnInit {
   errMess: string;
   dishcopy: Dish;
 
-  @ViewChild('fform') ratingFormDirective;
+  @ViewChild('fform') commentFormDirective;
 
   formErrors = {
-    'name': '',
+    'author': '',
     'comment': '',
   };
 
   validationMessages = {
-    'name': {
+    'author': {
       'required':      'Name is required.',
       'minlength':     'Name must be at least 2 characters long.',
       'maxlength':     'Name cannot be more than 50 characters long.'
@@ -53,21 +52,21 @@ export class DishdetailComponent implements OnInit {
    }
 
  createForm() {
-   this.ratingForm = this.fb.group({
-     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)] ],
-     score: [5, [] ],
+   this.commentForm = this.fb.group({
+     author: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)] ],
+     rating: [5, [] ],
      comment: ['', [Validators.required] ],
    });
 
-    this.ratingForm.valueChanges
+    this.commentForm.valueChanges
      .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged(); // (re)set validation messages now
   }
 
   onValueChanged(data?: any) {
-    if (!this.ratingForm) { return; }
-    const form = this.ratingForm;
+    if (!this.commentForm) { return; }
+    const form = this.commentForm;
     for (const field in this.formErrors) {
       if (this.formErrors.hasOwnProperty(field)) {
         // clear previous error message (if any)
@@ -86,14 +85,14 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-    this.rating = this.ratingForm.value;
+    this.comment = this.commentForm.value;
     // save comment
     const date = new Date();
     const dataISO = date.toISOString();
     const newComment: Comment = {
-      rating: this.rating.score,
-      comment: this.rating.comment,
-      author: this.rating.name,
+      rating: this.comment.rating,
+      comment: this.comment.comment,
+      author: this.comment.author,
       date: dataISO,
     }
     this.dishcopy.comments.push(newComment);
@@ -101,10 +100,10 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dish => {this.dish = dish; this.dishcopy = dish;},
                  errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
     // reset value and form
-    this.ratingFormDirective.resetForm();
-    this.ratingForm.reset({
-      name: '',
-      score: 5,
+    this.commentFormDirective.resetForm();
+    this.commentForm.reset({
+      author: '',
+      rating: 5,
       comment: '',
     });
   }

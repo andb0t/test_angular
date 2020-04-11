@@ -43,22 +43,22 @@
         </p>
       </mat-list>
 
-      <p *ngIf=ratingForm.valid>
-        {{ratingForm.value.comment}}<br/>
-        {{ratingForm.value.score}} stars<br/>
-        -- {{ratingForm.value.name}}
+      <p *ngIf=commentForm.valid>
+        {{commentForm.value.comment}}<br/>
+        {{commentForm.value.rating}} stars<br/>
+        -- {{commentForm.value.author}}
       </p>
 
-      <form novalidate [formGroup]="ratingForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+      <form novalidate [formGroup]="commentForm" #fform="ngForm" (ngSubmit)="onSubmit()">
         <p>
           <mat-form-field class="full-width">
-            <input matInput formControlName="name" placeholder="Name" type="text" required>
-            <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+            <input matInput formControlName="author" placeholder="Name" type="text" required>
+            <mat-error *ngIf="formErrors.author">{{formErrors.author}}</mat-error>
           </mat-form-field>
         </p>
         <p>
-          Rating:
-          <mat-slider formControlName="score" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5"></mat-slider>
+          Please rate this dish (1-5 stars):
+          <mat-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5"></mat-slider>
         </p>
         <p>
           <mat-form-field class="full-width">
@@ -66,7 +66,7 @@
             <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
           </mat-form-field>
         </p>
-        <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="ratingForm.invalid">Submit</button>
+        <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="commentForm.invalid">Submit</button>
       </form>
 
     </div>
