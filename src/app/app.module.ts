@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-// import { HttpModule } from '@angular/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -36,6 +35,7 @@ import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
 import { baseURL } from './shared/baseurl'
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,6 @@ import { baseURL } from './shared/baseurl'
     BrowserAnimationsModule,
     FlexLayoutModule,
     HttpClientModule,
-    // HttpModule,
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
@@ -76,7 +75,8 @@ import { baseURL } from './shared/baseurl'
     DishService,
     PromotionService,
     LeaderService,
-    {provide: 'BaseURL', useValue: baseURL}
+    ProcessHTTPMsgService,
+    {provide: 'BaseURL', useValue: baseURL},
   ],
   entryComponents: [
     LoginComponent
