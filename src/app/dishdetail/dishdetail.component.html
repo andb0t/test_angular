@@ -48,7 +48,7 @@
 
       <p *ngIf=ratingForm.valid>
         {{ratingForm.value.comment}}<br/>
-        {{ratingForm.value.rating}} stars<br/>
+        {{ratingForm.value.score}} stars<br/>
         -- {{ratingForm.value.name}}
       </p>
 
@@ -61,7 +61,7 @@
         </p>
         <p>
           Rating:
-          <mat-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5"></mat-slider>
+          <mat-slider formControlName="score" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5"></mat-slider>
         </p>
         <p>
           <mat-form-field class="full-width">

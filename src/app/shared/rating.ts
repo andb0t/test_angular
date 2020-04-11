@@ -1,5 +1,5 @@
 export class Rating {
     name: string;
-    rating: string;
-    comment: number;
+    score: number;
+    comment: string;
 };

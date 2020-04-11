@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Rating } from '../shared/rating';
+import { Comment } from '../shared/comment';
 
 
 @Component({
@@ -50,7 +51,7 @@ export class DishdetailComponent implements OnInit {
  createForm() {
    this.ratingForm = this.fb.group({
      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)] ],
-     rating: ['5', [] ],
+     score: [5, [] ],
      comment: ['', [Validators.required] ],
    });
 
@@ -82,13 +83,23 @@ export class DishdetailComponent implements OnInit {
 
   onSubmit() {
     this.rating = this.ratingForm.value;
-    console.log(this.rating);
+    // save comment
+    const date = new Date();
+    const dataISO = date.toISOString();
+    const newComment: Comment = {
+      rating: this.rating.score,
+      comment: this.rating.comment,
+      author: this.rating.name,
+      date: dataISO,
+    }
+    this.dish.comments.push(newComment)
+    // reset value and form
+    this.ratingFormDirective.resetForm();
     this.ratingForm.reset({
       name: '',
-      rating: '',
+      score: 5,
       comment: '',
     });
-    this.ratingFormDirective.resetForm();
   }
 
   ngOnInit() {
