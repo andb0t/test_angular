@@ -16,6 +16,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppComponent } from './app.component';
 import 'hammerjs';
@@ -57,6 +58,7 @@ import { LoginComponent } from './login/login.component';
     MatDialogModule,
     FlexLayoutModule,
     MatFormFieldModule,
+    MatSliderModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatSelectModule,

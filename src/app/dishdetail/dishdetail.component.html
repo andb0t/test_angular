@@ -36,7 +36,7 @@
       <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
     </div>
 
-    <div fxFlex="40" *ngIf="dish">
+    <div fxFlex="60" *ngIf="dish">
       <h2>Comments</h2>
       <mat-list *ngFor="let comment of dish.comments">
         <p>
@@ -45,6 +45,29 @@
           -- {{comment.author}}, {{comment.date | date}}
         </p>
       </mat-list>
+
+      <p>{{ ratingForm.value | json }} {{ ratingForm.status | json }}</p>
+
+      <form novalidate [formGroup]="ratingForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+        <p>
+          <mat-form-field class="full-width">
+            <input matInput formControlName="name" placeholder="Name" type="text" required>
+            <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
+          </mat-form-field>
+        </p>
+        <p>
+          Rating:
+          <mat-slider formControlName="rating" thumbLabel tickInterval="1" min="1" max="5" step="1" value="5"></mat-slider>
+        </p>
+        <p>
+          <mat-form-field class="full-width">
+            <textarea matInput formControlName="comment" placeholder="Your feedback" rows=1></textarea>
+            <mat-error *ngIf="formErrors.comment">{{formErrors.comment}}</mat-error>
+          </mat-form-field>
+        </p>
+        <button type="submit" mat-button class="background-primary text-floral-white" [disabled]="ratingForm.invalid">Submit</button>
+      </form>
+
     </div>
     <div fxFlex [hidden]="dish">
       <mat-spinner></mat-spinner><h4>Loading . . . Please Wait</h4>
