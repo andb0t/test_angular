@@ -37,7 +37,6 @@ export class DishdetailComponent implements OnInit {
     },
     'comment': {
       'required':      'Comment is required.',
-      'minlength':     'Comment must be at least 2 characters long.',
     },
   };
 
@@ -52,7 +51,7 @@ export class DishdetailComponent implements OnInit {
    this.ratingForm = this.fb.group({
      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)] ],
      rating: ['5', [] ],
-     comment: ['', [Validators.required, Validators.minLength(2)] ],
+     comment: ['', [Validators.required] ],
    });
 
     this.ratingForm.valueChanges

@@ -46,7 +46,11 @@
         </p>
       </mat-list>
 
-      <p>{{ ratingForm.value | json }} {{ ratingForm.status | json }}</p>
+      <p *ngIf=ratingForm.valid>
+        {{ratingForm.value.comment}}<br/>
+        {{ratingForm.value.rating}} stars<br/>
+        -- {{ratingForm.value.name}}
+      </p>
 
       <form novalidate [formGroup]="ratingForm" #fform="ngForm" (ngSubmit)="onSubmit()">
         <p>
