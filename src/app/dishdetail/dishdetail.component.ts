@@ -24,6 +24,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   errMess: string;
+  dishcopy: Dish;
 
   @ViewChild('fform') ratingFormDirective;
 
@@ -95,7 +96,10 @@ export class DishdetailComponent implements OnInit {
       author: this.rating.name,
       date: dataISO,
     }
-    this.dish.comments.push(newComment)
+    this.dishcopy.comments.push(newComment);
+    this.dishService.putDish(this.dishcopy)
+      .subscribe(dish => {this.dish = dish; this.dishcopy = dish;},
+                 errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
     // reset value and form
     this.ratingFormDirective.resetForm();
     this.ratingForm.reset({
@@ -110,7 +114,10 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dishIds => this.dishIds = dishIds, errmess => this.errMess = <any>errmess);
     this.route.params
       .pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
-      .subscribe(dish => { this.dish = dish; this.setPrevNext(dish.id); }, errmess => this.errMess = <any>errmess);
+      .subscribe(dish => {this.dish = dish;
+                          this.dishcopy = dish;
+                          this.setPrevNext(dish.id); },
+                 errmess => this.errMess = <any>errmess);
   }
 
   setPrevNext(dishId: string) {
