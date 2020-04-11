@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject } from '@angular/core';
 import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
@@ -85,17 +85,11 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
+    // fill comment with form value and external date value
     this.comment = this.commentForm.value;
-    // save comment
-    const date = new Date();
-    const dataISO = date.toISOString();
-    const newComment: Comment = {
-      rating: this.comment.rating,
-      comment: this.comment.comment,
-      author: this.comment.author,
-      date: dataISO,
-    }
-    this.dishcopy.comments.push(newComment);
+    this.comment.date = new Date().toISOString();
+    // persist
+    this.dishcopy.comments.push(this.comment);
     this.dishService.putDish(this.dishcopy)
       .subscribe(dish => {this.dish = dish; this.dishcopy = dish;},
                  errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
