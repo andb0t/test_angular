@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 
@@ -9,7 +9,8 @@ import { LoginComponent } from '../login/login.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              @Inject('BaseURL') public BaseURL) { }
 
   ngOnInit(): void {
   }
