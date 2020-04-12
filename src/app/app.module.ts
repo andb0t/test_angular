@@ -27,6 +27,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { DishdetailComponent } from './dishdetail/dishdetail.component';
 import { DishService } from './services/dish.service';
+import { FeedbackService } from './services/feedback.service';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -78,6 +79,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     PromotionService,
     LeaderService,
     ProcessHTTPMsgService,
+    FeedbackService,
     {provide: 'BaseURL', useValue: baseURL},
   ],
   entryComponents: [
