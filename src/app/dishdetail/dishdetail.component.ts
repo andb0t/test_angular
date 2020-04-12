@@ -3,18 +3,28 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { visibility } from '../animations/app.animation';
 
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { Comment } from '../shared/comment';
+import { visibility } from '../animations/app.animation';
+import { flyInOut, expand } from '../animations/app.animation'
 
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
-  animations: [ visibility() ]
+  // tslint:disable-next-line:use-host-property-decorator
+  host: {
+    '[@flyInOut]': 'true',
+    'style': 'display: block;'
+  },
+  animations: [
+    flyInOut(),
+    visibility(),
+    expand()
+  ]
 })
 export class DishdetailComponent implements OnInit {
 
@@ -26,7 +36,7 @@ export class DishdetailComponent implements OnInit {
   next: string;
   errMess: string;
   dishcopy: Dish;
-  visibility = "shown";
+  visibility = 'shown';
 
   @ViewChild('fform') commentFormDirective;
 
